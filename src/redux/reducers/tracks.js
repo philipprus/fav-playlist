@@ -30,7 +30,8 @@ const search_tracks = (state = {track_list: []}, action) => {
         case CLEAR_FETCH_TRACKS: 
             return {
                 ...state,
-                track_list: []
+                track_list: [],
+                status: ""
             }
         default: 
             return state;

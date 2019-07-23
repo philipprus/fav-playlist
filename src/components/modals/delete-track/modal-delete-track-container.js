@@ -5,7 +5,7 @@ import { deleteTrack, addTrack } from "../../../redux/actions";
 const mapStateToProps = (state) => {
     return {
         favorite_list: state.tracks.favorite_list,
-        track_add: state.tracks.search_tracks[0],
+        track_add: state.tracks.search_tracks.track_list[0],
     };
 };
 

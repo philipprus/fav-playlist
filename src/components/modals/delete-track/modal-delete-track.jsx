@@ -12,7 +12,7 @@ import { MenuItem } from '@material-ui/core';
 
 export default function ModalDeleteTrack(props) {
   const {open, onClose, favorite_list, track_add, addTrack, deleteTrack} = props;
-
+console.log(track_add);
   const [values, setValues] = React.useState({
     track_id: 0
   });
@@ -30,7 +30,8 @@ export default function ModalDeleteTrack(props) {
     } else {
         deleteTrack && deleteTrack(favorite_list[favorite_list.length-1].track_id);
     }
-    addTrack && addTrack(track_add);
+    addTrack && addTrack(track_add.track);
+    onClose && onClose();
   }
 
   return (
@@ -63,7 +64,7 @@ export default function ModalDeleteTrack(props) {
         Cancel
       </Button>
       <Button onClick={()=>handlerAgree()} color="primary">
-        Agree
+        OK
       </Button>
     </DialogActions>
   </Dialog>
