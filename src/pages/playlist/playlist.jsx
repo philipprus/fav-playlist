@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 function Playlist(props) {
 
      const handlerOpen = (track_id) => {
-        const { openPage } = this.props;
+        const { openPage } = props;
         props.history.push("/"+track_id);
         openPage && openPage();
     }
