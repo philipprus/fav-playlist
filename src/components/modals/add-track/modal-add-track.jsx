@@ -149,10 +149,10 @@ export default function ModalAddTrack(props) {
           <IconButton aria-label="Close" className={classes.closeButton} onClick={()=>handleClose()} >
             <CloseIcon />
           </IconButton>
-          <h2>Add Song 😍</h2>
-          <p>
+          <h2>Add Song <span role="img" aria-label="smiling face with heart-eyes">😍</span></h2>
+          <p>face with 
             Please, write name song.
-          </p>
+          </p>heart-eyes
           <form noValidate autoComplete="off">
             <TextField
               id="standard-name"

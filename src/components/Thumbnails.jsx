@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { CardMedia } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { getRandomColor, getRandomEmoji } from '../service/common';
-import { noConflict } from 'q';
 
 const useStyles = makeStyles({
     media: {

@@ -86,7 +86,7 @@ function Header(props) {
             <Typography className={classes.countSongs}>
               Songs: {favorite_list_count}/{MAX_TRACKS}
             </Typography>
-            <ModalAddTrack textButton="Add 😍"/>
+            <ModalAddTrack textButton="Add"/>
         </Toolbar>
         
       </AppBar>

@@ -16,7 +16,7 @@ function Playlist(props) {
         const { favorite_list, deleteTrack } = props;
         return favorite_list.map( (track, index) => {
            return ( 
-           <Grid item xs={12} sm={3} key={`grid-${index}`} >
+           <Grid item xs={12} sm={6} md={3} key={`grid-${index}`} >
                 <Track track={track} onClick={() => handlerOpen(track.track_id)} deleteTrack={()=> deleteTrack(track.track_id)} />
            </Grid>); 
         });

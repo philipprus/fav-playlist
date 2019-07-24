@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { cropLongString } from '../../service/common';
 import Thumbnails from '../Thumbnails';
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles({
     card: {
@@ -69,4 +70,10 @@ export function Track(props) {
           </CardActions>
         </Card>
       );
+}
+
+Track.propTypes = {
+  track: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  deleteTrack: PropTypes.func.isRequired
 }
