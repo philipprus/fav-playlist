@@ -7,6 +7,8 @@ import { TrackNoImage } from '../../track/track-no-image';
 import { isLoading, isIdle } from '../../../service/deep-objects';
 import { MAX_TRACKS, FILTERS } from '../../../service/constants';
 import ModalDeleteTrack from '../delete-track/modal-delete-track-container';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 function getModalStyle() {
   const top = 50;
@@ -56,6 +58,17 @@ const useStyles = makeStyles(theme => ({
   label: {
     textTransform: 'capitalize',
   },
+  closeButton: {
+    position: 'absolute',
+    right: '5px',
+    background: '#fff',
+    borderRadius: '50%',
+    border: 0,
+    padding: '5px',
+    top: '5px',
+    color: '#000',
+    zIndex: 10
+  }
 }));
 
 export default function ModalAddTrack(props) {
@@ -133,6 +146,9 @@ export default function ModalAddTrack(props) {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
+          <IconButton aria-label="Close" className={classes.closeButton} onClick={()=>handleClose()} >
+            <CloseIcon />
+          </IconButton>
           <h2>Add Song 😍</h2>
           <p>
             Please, write name song.

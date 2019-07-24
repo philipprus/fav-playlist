@@ -14,12 +14,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   select: {
     width: '100%'
+  },
+  modal: {
+    border: '2px solid #e63421'
   }
 }));
 
 export default function ModalDeleteTrack(props) {
   const classes = useStyles();
-  const {open, onClose, favorite_list, track_add, addTrack, deleteTrack, setSort} = props;
+  const {open, onClose, favorite_list, track_add, addTrack, deleteTrack, setSort, clearFetchTracks} = props;
   const [values, setValues] = React.useState({
     track_id: 0
   });
@@ -39,23 +42,18 @@ export default function ModalDeleteTrack(props) {
     }
     setSort(FILTERS.BY_DEFAULT)
     addTrack && addTrack(track_add.track);
+    clearFetchTracks && clearFetchTracks();
     onClose && onClose();
   }
 
   return (
-    <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-    <DialogTitle id="form-dialog-title">Warnings: Exceeded the limit </DialogTitle>
+    <Dialog open={open} className={classes.modal} onClose={onClose} aria-labelledby="form-dialog-title">
+    <DialogTitle id="form-dialog-title">😤 Warnings: Exceeded the limit </DialogTitle>
     <DialogContent>
       <DialogContentText>
-      <p>
-          You exceeded the limit of songs in a favourites. 
-      </p>
-      <p>
-        If you press "ok" th oldest song will be deleted.
-      </p>
-      <p>
+          You exceeded the limit of songs in a favourites. <br/>
+        If you press "ok" th oldest song will be deleted.<br/>
         You can choose song to be deleted from the following list.
-      </p>
       </DialogContentText>
       <form  autoComplete="off">
             <FormControl className={classes.select}>

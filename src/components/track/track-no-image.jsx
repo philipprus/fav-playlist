@@ -17,7 +17,7 @@ export function TrackNoImage(props) {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-          <CardActionArea>
+          <CardActionArea onClick={()=>addTrack(props.track)}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {track_name ? cropLongString(track_name, 30) : "No name"}

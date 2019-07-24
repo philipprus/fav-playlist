@@ -46,7 +46,7 @@ class TrackPage extends React.Component {
         if(lyrics) {
             return (
                 <div>
-                    <p dangerouslySetInnerHTML={{__html: lyrics && lyrics.lyrics_body}}/>
+                    <div dangerouslySetInnerHTML={{__html: lyrics && lyrics.lyrics_body}}/>
                     <h5>Copyright</h5>
                     <p>{lyrics && lyrics.lyrics_copyright}</p>
                 </div>);

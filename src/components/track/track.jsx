@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,7 +13,7 @@ import Thumbnails from '../Thumbnails';
 
 const useStyles = makeStyles({
     card: {
-      height: 300,
+      minHeight: 300,
       position: 'relative',
       overflow: 'inherit'
     },
@@ -30,12 +30,11 @@ const useStyles = makeStyles({
     closeButton: {
       position: 'absolute',
       right: '-15px',
-      backgroundColor: fade('#3f51b5', 1),
-      '&:hover': {
-        backgroundColor: fade('#000', 0.25),
-      },
-      boxShadow: '0px 0px 6px #000',
-      padding: '2px',
+      background: 'linear-gradient(45deg, #da0d3a 30%, #fca0a0 90%)',
+      borderRadius: '50%',
+      border: 0,
+      padding: '5px',
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
       top: '-15px',
       color: '#fff',
       zIndex: 10
@@ -43,7 +42,7 @@ const useStyles = makeStyles({
   });
 
 export function Track(props) {
-    const { album_name, artist_name, track_name, album, added_date } = props.track;
+    const { album_name, artist_name, track_name, album } = props.track;
     const {onClick, deleteTrack} = props;
     const classes = useStyles();
     return (

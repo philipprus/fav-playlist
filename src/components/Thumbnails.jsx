@@ -2,22 +2,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CardMedia } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import noImage from'../assets/images/no-image.png';
+import { getRandomColor, getRandomEmoji } from '../service/common';
+import { noConflict } from 'q';
 
 const useStyles = makeStyles({
     media: {
-      height: 100,
+      height: 150,
+    }, 
+    noMedia: {
+      height: 150,
+      justifyContent: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: 40
     }
   });
 
 const Thumbnails = (props) => {
     const classes = useStyles();
     const {imageUrl, title } = props;
-    return <CardMedia
+    return imageUrl ? <CardMedia
             className={classes.media}
-            image={imageUrl ? imageUrl : noImage}
+            image={imageUrl}
             title={title}
-        />
+        /> : <div className={classes.noMedia} style={{backgroundColor: getRandomColor()}}> {getRandomEmoji()} </div>
 }
 
 Thumbnails.propTypes = {

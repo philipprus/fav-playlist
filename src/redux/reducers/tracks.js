@@ -43,6 +43,9 @@ const favorite_list = (state = [], action) => {
         case ADD_TRACK:
             const { payload } = action;
             const track = {...payload.track, added_date: Date.now()};
+            const isExist = state.some(el => el.track_id === track.track_id);
+            
+            if(isExist) { return state }
               return [
                   track,
                   ...state

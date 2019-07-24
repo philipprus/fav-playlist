@@ -38,9 +38,6 @@ const useStyles = makeStyles( (theme) => ({
   },
   selectUnderline: {
     borderBottom: "2px solid #ff747e"
-  },
-  selectUnderline: {
-    borderBottom: "2px solid #ff747e"
   }
 }));
 
@@ -63,14 +60,14 @@ function Header(props) {
     return  <form className={classes.formSort} autoComplete="off">
                 <FormControl className={classes.formControl}>
                     <Select
-                      classes={{root: classes.selectRoot, icon: classes.selectIcon, underline: classes.selectUnderline}}
+                      classes={{root: classes.selectRoot, icon: classes.selectIcon}}
                       value={sort}
                       onChange={handleChange}
                     >
-                    <MenuItem value={FILTERS.BY_DEFAULT}>By date added</MenuItem>
-                    <MenuItem value={FILTERS.BY_ALBUM}>By album</MenuItem>
+                    <MenuItem value={FILTERS.BY_DEFAULT}>By Date Added</MenuItem>
+                    <MenuItem value={FILTERS.BY_ALBUM}>By Album</MenuItem>
                     <MenuItem value={FILTERS.BY_ARTIST}>By Artist</MenuItem>
-                    <MenuItem value={FILTERS.BY_TRACK}>By track</MenuItem>
+                    <MenuItem value={FILTERS.BY_TRACK}>By Track</MenuItem>
                     {/* <MenuItem value={FILTERS.BY_TRACK_LENGTH}>By track length</MenuItem> */}
                     </Select>
                 </FormControl>
