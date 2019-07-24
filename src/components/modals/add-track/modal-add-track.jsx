@@ -112,6 +112,7 @@ export default function ModalAddTrack(props) {
     } else {
       setSort(FILTERS.BY_DEFAULT)
       addTrack && addTrack(track);
+      setValues({ ...values, name: "" });
       clearFetchTracks && clearFetchTracks();
     }
   }
@@ -137,7 +138,7 @@ export default function ModalAddTrack(props) {
   return (
     <div>
       <Button type="button" classes={{root: classes.root, label: classes.label}} onClick={handleOpen}>
-        {textButton}
+          {textButton}
       </Button>
       <Modal
         aria-labelledby="simple-modal-title"
@@ -152,7 +153,7 @@ export default function ModalAddTrack(props) {
           <h2>Add Song <span role="img" aria-label="smiling face with heart-eyes">😍</span></h2>
           <p>face with 
             Please, write name song.
-          </p>heart-eyes
+          </p>
           <form noValidate autoComplete="off">
             <TextField
               id="standard-name"

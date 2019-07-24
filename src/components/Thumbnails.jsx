@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CardMedia } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { getRandomColor, getRandomEmoji } from '../service/common';
 
 const useStyles = makeStyles({
     media: {
@@ -19,17 +18,17 @@ const useStyles = makeStyles({
 
 const Thumbnails = (props) => {
     const classes = useStyles();
-    const {imageUrl, title } = props;
-    return imageUrl ? <CardMedia
+    const {album, noImage} = props;
+    return album && album.album_coverart_100x100 ? <CardMedia
             className={classes.media}
-            image={imageUrl}
-            title={title}
-        /> : <div className={classes.noMedia} style={{backgroundColor: getRandomColor()}}> {getRandomEmoji()} </div>
+            image={album.album_coverart_100x100}
+            title={album.album_name}
+        /> : <div className={classes.noMedia} style={{backgroundColor: noImage.bg}}> {noImage.icon} </div>
 }
 
 Thumbnails.propTypes = {
-  imageUrl: PropTypes.string,
-  title: PropTypes.string.isRequired
+  album: PropTypes.object,
+  noImage: PropTypes.object.isRequired
 }
 
 export default Thumbnails;

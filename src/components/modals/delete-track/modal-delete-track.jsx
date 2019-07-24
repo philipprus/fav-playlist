@@ -48,7 +48,7 @@ export default function ModalDeleteTrack(props) {
 
   return (
     <Dialog open={open} className={classes.modal} onClose={onClose} aria-labelledby="form-dialog-title">
-    <DialogTitle id="form-dialog-title">😤 Warnings: Exceeded the limit </DialogTitle>
+    <DialogTitle id="form-dialog-title"> <span role="img" aria-label="heart-eyes">😤</span> Warnings: Exceeded the limit </DialogTitle>
     <DialogContent>
       <DialogContentText>
           You exceeded the limit of songs in a favourites. <br/>

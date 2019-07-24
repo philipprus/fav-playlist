@@ -35,14 +35,15 @@ function Playlist(props) {
             </>
             );
         } else {
-            return <div>
-                    <p>
+            return <div style={{textAlign:'center', height: '60vh', minHeight: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
+                    <h2>
+                        <span role="img" aria-label="heart">😅</span> <br/>
                         No Favorites songs in playlist. 
-                    </p>
+                    </h2>
                     <p>
                         Please, add your favorite songs.
                     </p>
-                    <ModalAddTrack textButton="Add" color="blue"/>
+                    <ModalAddTrack textButton="Add song" color="blue"/>
                 </div>;
         }
     }

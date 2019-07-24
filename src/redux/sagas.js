@@ -8,18 +8,18 @@ import { sortSearchByKey } from '../service/sort';
 
 const isRequestSucceded = (status) => status >= 200 && status <= 204;
 
-function makeEndPoint(endPoint) {
+export function makeEndPoint(endPoint) {
   return `${API_ROOT}${endPoint}`
 }
 
-function getDataAsync(ApiEndpoint, action) {
+export function getDataAsync(ApiEndpoint, action) {
   const endpoint = makeEndPoint(ApiEndpoint);
   return axios.get(endpoint, {
       params: { ...action, apikey:APIKEY },
   });
 }
 
-function* makeFetchTracks(action) {
+export function* makeFetchTracks(action) {
   yield put({ type: FETCH_TRACKS_PENDING});
   try {
     const response = yield call(getDataAsync, ENDPOINTS.search_track, {q_track: action.payload.name});
@@ -36,10 +36,7 @@ function* makeFetchTracks(action) {
   }
 }
 
-
-
-
-function* makeFetchTrack(action) {
+export function* makeFetchTrack(action) {
   yield put({ type: FETCH_TRACK_PENDING});
   try {
     const [track, album] =  yield all([
@@ -63,7 +60,7 @@ function* makeFetchTrack(action) {
   }
 }
 
-function* makeFetchLyrics(action) {
+export function* makeFetchLyrics(action) {
   yield put({ type: FETCH_LYRICS_TRACK_PENDING});
   try {
     const response = yield call(getDataAsync, ENDPOINTS.get_lyrics_track, {track_id: action.payload.track_id});

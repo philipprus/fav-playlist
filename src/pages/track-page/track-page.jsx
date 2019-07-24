@@ -3,6 +3,7 @@ import { Grid, Button } from "@material-ui/core";
 import Thumbnails from "../../components/thumbnails";
 import { isLoading } from "../../service/deep-objects";
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from "react-router-dom";
 
 
 const useStyles = () => ({
@@ -29,13 +30,13 @@ class TrackPage extends React.Component {
         this.props.history.push("/");
     }
 
-    componentDidMount() {
+    getLirycs() {
         const { has_lyrics, track_id, lyrics } = this.props.track;
         const { getLyrics } = this.props;
         has_lyrics && !lyrics && getLyrics(track_id);
-    }   
+    }
 
-    renderLyrics = () => {
+    renderLyrics() {
         const { lyrics, status_lyrics  } = this.props.track;
         if (!lyrics) {
             return <p>No lyrics</p>
@@ -56,15 +57,28 @@ class TrackPage extends React.Component {
 
 
     render(){
-        const { track_name, album_name, artist_name, album  } = this.props.track;
         const { classes } = this.props;
-        // const { music_genre: {music_genre_name} } = primary_genres.music_genre_list[0];
+        
+        if(!this.props.track) {
+            return <Grid container className={classes.pageStyle} spacing={3}>
+            <Grid item xs={12}>
+                No track
+            </Grid>
+            <Grid item xs={12}>
+                <Button className={classes.backButton} onClick={()=> this.handlerClosePage()}><span role="img" aria-label="ok">👌</span> Back to playlist</Button>
+            </Grid>
+        </Grid> ;
+        } else {
+            this.getLirycs();
+        }
+        
+        const { track_name, album_name, artist_name, album, noImage  } = this.props.track;
 
         return (
             <div>
                 <Grid container className={classes.pageStyle} spacing={3}>
                     <Grid item xs={3}>
-                        <Thumbnails imageUrl={album && album.album_coverart_100x100} title={album_name} />
+                        <Thumbnails album={album} noImage={noImage}  />
                     </Grid>
                     <Grid item xs={9}>
                         <h2>{track_name}</h2>
@@ -72,12 +86,13 @@ class TrackPage extends React.Component {
                         <p><strong>Artist name:</strong> { artist_name }</p>
                         <h3>Lyrics</h3>
                         {this.renderLyrics()}
-                        {/* <p>{ music_genre_name }</p> */}
-                        <Button className={classes.backButton} onClick={()=> this.handlerClosePage()}>👌 Back to playlist</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button className={classes.backButton} onClick={()=> this.handlerClosePage()}><span role="img" aria-label="ok">👌</span> Back to playlist</Button>
                     </Grid>
                 </Grid> 
             </div>);
     }
 };
 
-export default withStyles(useStyles)(TrackPage);
+export default withRouter(withStyles(useStyles)(TrackPage));

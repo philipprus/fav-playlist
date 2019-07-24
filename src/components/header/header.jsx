@@ -79,14 +79,14 @@ function Header(props) {
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
               <Typography className={classes.title} variant="h6" noWrap>
-                💖 Favorite PlayList Songs
+              <span role="img" aria-label="heart">💖</span> Favorite PlayList Songs
               </Typography>
-            {statusOpenPage && statusOpenPage.status && <Button className={classes.buttonAdd} onClick={()=> handlerClosePage()}>👌 Back</Button>}
+            {statusOpenPage && statusOpenPage.status && <Button className={classes.buttonAdd} onClick={()=> handlerClosePage()}><span role="img" aria-label="ok">👌</span> Back</Button>}
             {statusOpenPage && !statusOpenPage.status && formSort()}
             <Typography className={classes.countSongs}>
               Songs: {favorite_list_count}/{MAX_TRACKS}
             </Typography>
-            <ModalAddTrack textButton="Add"/>
+            <ModalAddTrack textButton="Add song"/>
         </Toolbar>
         
       </AppBar>

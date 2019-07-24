@@ -6,15 +6,17 @@ import TrackPage from "../pages/track-page/track-page-container";
 import Header from "../components/header/header-container";
 import { Container } from "@material-ui/core";
 import Footer from "../content-layout/footer";
+import NotFoundPage from "../components/notFoundPage";
 
-export const Routes = () => {
+export function Routes() {
     return (
         <BrowserRouter>
             <Header/>
-            <Container>
+            <Container style={{minHeight: '60vh'}}>
                 <Switch>
-                    <Route path="/:trackID" render={(props) => <TrackPage {...props} />} />
-                    <Route path="/" render={(props) => <App {...props} />} />
+                    <Route path="/:trackID" component={TrackPage} />
+                    <Route path="/" component={App} />
+                    <Route component={NotFoundPage} />
                 </Switch>
             </Container>
             <Footer/>

@@ -43,7 +43,7 @@ const useStyles = makeStyles({
   });
 
 export function Track(props) {
-    const { album_name, artist_name, track_name, album } = props.track;
+    const { album_name, artist_name, track_name, album, noImage } = props.track;
     const {onClick, deleteTrack} = props;
     const classes = useStyles();
     return (
@@ -52,9 +52,9 @@ export function Track(props) {
           <CloseIcon />
         </IconButton>
           <CardActionArea onClick={()=>onClick()}>
-            <Thumbnails imageUrl={album && album.album_coverart_100x100} title={album_name} />
+            <Thumbnails album={album} noImage={noImage}  />
             <CardContent>
-              <Typography className={classes.title} gutterBottom   component="h2">
+              <Typography className={classes.title} gutterBottom  component="h2">
                 {cropLongString(track_name, 30)}
               </Typography>
               <Typography  color="textSecondary" component="p" className={classes.subTitle}>
@@ -64,7 +64,7 @@ export function Track(props) {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button onClick={onClick} size="small" color="primary">
+            <Button onClick={onClick} className="buttonMore" size="small" color="primary">
               More...
             </Button>
           </CardActions>

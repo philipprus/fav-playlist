@@ -20,8 +20,19 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --watch",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest",
+      "^.+\\.svg$": "jest-svg-transformer"
+    },
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,11 +51,12 @@
   },
   "devDependencies": {
     "babel-jest": "^24.8.0",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.10.0",
-    "jest": "^24.8.0",
-    "react-addons-test-utils": "^15.6.2",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest-svg-transformer": "^1.0.0",
     "react-test-renderer": "^16.8.6"
   }
 }
