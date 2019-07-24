@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+// CR: this is also used as a child inside under container which should be generally avoided although is allowed in specific cases. If it's hard to change it to be otherwise, I would simply comment on that in README.md that you know of that but it's good enough for this app.
 const ModalAddTrackContainer = connect(mapStateToProps, mapDispatchToProps)(ModalAddTrack);
 
 export default ModalAddTrackContainer;

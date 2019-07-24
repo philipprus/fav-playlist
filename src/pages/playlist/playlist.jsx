@@ -17,13 +17,17 @@ function Playlist(props) {
         return favorite_list.map( (track, index) => {
            return ( 
            <Grid item xs={12} sm={6} md={3} key={`grid-${index}`} >
+               {/* CR: indented too much and line is too long */}
                 <Track track={track} onClick={() => handlerOpen(track.track_id)} deleteTrack={()=> deleteTrack(track.track_id)} />
            </Grid>); 
         });
     }
     
 
+    // CR: remove commented out lines that are not needed
+    // CR: fix indentations
     // render() {
+        // CR: if you already have a function for creating the view when length > 0, move the grid over there and the stuff rendered in the else clause can be placed in a function as well and then you can use short and more readable conditional rendering here
         const { favorite_list } = props;
 
         if (favorite_list.length > 0 ) {
@@ -35,6 +39,8 @@ function Playlist(props) {
             </>
             );
         } else {
+            // CR: I would refactor this to a separate component
+            // CR: why style and not CSS+className or makeStyles?
             return <div style={{textAlign:'center', height: '60vh', minHeight: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
                     <h2>
                         <span role="img" aria-label="heart">😅</span> <br/>

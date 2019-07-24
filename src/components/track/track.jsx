@@ -43,6 +43,8 @@ const useStyles = makeStyles({
   });
 
 export function Track(props) {
+  // CR: can merge the destructuring statements together
+  // CR: cropLongString is not the ideal solution, there are other ways to go about it (e.g. https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/)
     const { album_name, artist_name, track_name, album, noImage } = props.track;
     const {onClick, deleteTrack} = props;
     const classes = useStyles();
