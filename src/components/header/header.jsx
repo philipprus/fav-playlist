@@ -9,7 +9,7 @@ import { MAX_TRACKS, FILTERS } from '../../service/constants';
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles( (theme) => ({
-  grow: {
+  header: {
     flexGrow: 1,
     marginBottom: "40px"
   },
@@ -46,7 +46,6 @@ function Header(props) {
   const { favorite_list_count, statusOpenPage, setSort, sort } = props;
 
   function handleChange(event) {
-  
     setSort && setSort(event.target.value)
   }
   
@@ -75,7 +74,7 @@ function Header(props) {
   }
 
   return (
-    <div className={classes.grow}>
+    <header className={classes.header}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
               <Typography className={classes.title} variant="h6" noWrap>
@@ -90,7 +89,7 @@ function Header(props) {
         </Toolbar>
         
       </AppBar>
-    </div>
+    </header>
   );
 }
 
