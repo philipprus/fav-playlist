@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Grid, Button } from "@material-ui/core";
-import Thumbnails from "../../components/Thumbnails";
+import Thumbnails from "../../components/thumbnails";
 import { isLoading } from "../../service/deep-objects";
 import { withStyles } from '@material-ui/core/styles';
 

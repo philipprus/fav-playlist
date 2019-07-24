@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { cropLongString } from '../../service/common';
-import Thumbnails from '../Thumbnails';
+import Thumbnails from '../thumbnails';
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles({
