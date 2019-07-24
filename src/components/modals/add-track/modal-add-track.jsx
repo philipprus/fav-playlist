@@ -5,7 +5,6 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { TrackNoImage } from '../../track/track-no-image';
 import { isLoading, isIdle } from '../../../service/deep-objects';
-import { sortByKey } from '../../../service/sort';
 import { MAX_TRACKS } from '../../../service/constants';
 import ModalDeleteTrack from '../delete-track/modal-delete-track-container';
 

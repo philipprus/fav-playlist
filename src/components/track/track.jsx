@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   });
 
 export function Track(props) {
-    const { album_name, artist_name, track_name, album } = props.track;
+    const { album_name, artist_name, track_name, album, added_date } = props.track;
     const {onClick, deleteTrack} = props;
     const classes = useStyles();
     return (
@@ -54,8 +54,10 @@ export function Track(props) {
               <Typography className={classes.title} gutterBottom   component="h2">
                 {cropLongString(track_name, 30)}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p" className={classes.subTitle}>
-                Artist: {cropLongString(artist_name, 20)} | Album: {cropLongString(album_name,20)}
+              <Typography  color="textSecondary" component="p" className={classes.subTitle}>
+                  Artist: {cropLongString(artist_name, 20)}  <br/>
+                  Album: {cropLongString(album_name,20)} <br/>
+                  Date: {added_date}
               </Typography>
             </CardContent>
           </CardActionArea>

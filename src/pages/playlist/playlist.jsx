@@ -4,34 +4,33 @@ import { Grid } from '@material-ui/core';
 import ModalAddTrack from '../../components/modals/add-track/modal-add-track-container';
 import { withRouter } from "react-router-dom";
 
-class Playlist extends React.Component {
+function Playlist(props) {
 
-     handlerOpen = (track_id) => {
+     const handlerOpen = (track_id) => {
         const { openPage } = this.props;
-        this.props.history.push("/"+track_id);
+        props.history.push("/"+track_id);
         openPage && openPage();
     }
   
-    playlistView() { 
-        const { favorite_list, deleteTrack } = this.props;
+    function playlistView() { 
+        const { favorite_list, deleteTrack } = props;
         return favorite_list.map( (track, index) => {
            return ( 
            <Grid item xs={12} sm={3} key={`grid-${index}`} >
-                <Track track={track} onClick={() => this.handlerOpen(track.track_id)} deleteTrack={()=> deleteTrack(track.track_id)} />
+                <Track track={track} onClick={() => handlerOpen(track.track_id)} deleteTrack={()=> deleteTrack(track.track_id)} />
            </Grid>); 
         });
     }
     
 
-    render() {
-
-        const { favorite_list } = this.props;
+    // render() {
+        const { favorite_list } = props;
 
         if (favorite_list.length > 0 ) {
             return (
                 <>
                 <Grid container  spacing={3}>
-                    {this.playlistView()} 
+                    {playlistView()} 
                 </Grid>
             </>
             );
@@ -47,6 +46,5 @@ class Playlist extends React.Component {
                 </div>;
         }
     }
-}
 
 export default withRouter(Playlist);

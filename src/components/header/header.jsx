@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { FormControl, InputLabel, Select, MenuItem, Button } from '@material-ui/core';
+import { FormControl, Select, MenuItem, Button } from '@material-ui/core';
 import ModalAddTrack from '../modals/add-track/modal-add-track-container';
 import { MAX_TRACKS, FILTERS } from '../../service/constants';
 import { withRouter } from "react-router-dom";
@@ -24,17 +24,17 @@ const useStyles = makeStyles( (theme) => ({
 
 function Header(props) {
   const classes = useStyles();
-  const { favorite_list_count, statusOpenPage, setFilter, filter } = props;
+  const { favorite_list_count, statusOpenPage, setSort, sort } = props;
  
   const [values, setValues] = React.useState({
-    filter: filter
+    sort: sort
   });
   function handleChange(event) {
     setValues(oldValues => ({
       ...oldValues,
       [event.target.name]: event.target.value,
     }));
-    setFilter && setFilter(event.target.value)
+    setSort && setSort(event.target.value)
   }
   
   function handlerClosePage() {
@@ -43,6 +43,26 @@ function Header(props) {
     props.history.push("/");
   }
 
+  const formSort = () => {
+    return  <form className={classes.root} autoComplete="off">
+                <FormControl className={classes.formControl}>
+                    <Select
+                    value={values.sort}
+                    onChange={handleChange}
+                    inputProps={{
+                        name: 'sort',
+                        id: 'sort',
+                    }}
+                    >
+                    <MenuItem value={FILTERS.BY_DEFAULT}>By date added</MenuItem>
+                    <MenuItem value={FILTERS.BY_ALBUM}>By album</MenuItem>
+                    <MenuItem value={FILTERS.BY_ARTIST}>By Artist</MenuItem>
+                    <MenuItem value={FILTERS.BY_TRACK}>By track</MenuItem>
+                    {/* <MenuItem value={FILTERS.BY_TRACK_LENGTH}>By track length</MenuItem> */}
+                    </Select>
+                </FormControl>
+            </form>
+  }
 
   return (
     <div className={classes.grow}>
@@ -52,24 +72,7 @@ function Header(props) {
             Favorite PlayList Songs
             </Typography>
             {statusOpenPage && statusOpenPage.status && <Button onClick={()=> handlerClosePage()}>Back</Button>}
-            <form className={classes.root} autoComplete="off">
-                <FormControl className={classes.formControl}>
-                    <Select
-                    value={values.filter}
-                    onChange={handleChange}
-                    inputProps={{
-                        name: 'filter',
-                        id: 'filter',
-                    }}
-                    >
-                    <MenuItem value={FILTERS.BY_DEFAULT}>By date added</MenuItem>
-                    <MenuItem value={FILTERS.BY_ALBUM}>By album</MenuItem>
-                    <MenuItem value={FILTERS.BY_ARTIST}>By Artist</MenuItem>
-                    <MenuItem value={FILTERS.BY_TRACK}>By track</MenuItem>
-                    <MenuItem value={FILTERS.BY_TRACK_LENGTH}>By track length</MenuItem>
-                    </Select>
-                </FormControl>
-            </form>
+            {statusOpenPage && !statusOpenPage.status && formSort()}
             <Typography>
               Songs: {favorite_list_count}/{MAX_TRACKS}
             </Typography>

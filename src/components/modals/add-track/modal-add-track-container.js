@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ModalAddTrack from "./modal-add-track";
-import { fetchTracks, addTrack, clearFetchTracks, setFilter } from "../../../redux/actions";
+import { fetchTracks, addTrack, clearFetchTracks, setSort } from "../../../redux/actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchTracks: (title) => dispatch(fetchTracks(title)),
         addTrack:  (track) => dispatch(addTrack(track)),
         clearFetchTracks: ()=> dispatch(clearFetchTracks()),
-        setFilter: (filter)=> dispatch(setFilter(filter))
+        setSort: (sort)=> dispatch(setSort(sort))
     };
 };
 

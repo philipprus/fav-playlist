@@ -3,8 +3,8 @@ import { takeLatest, put, call, all } from 'redux-saga/effects';
 import axios from 'axios';
 import { ENDPOINTS } from '../service/constants';
 import { API_ROOT, APIKEY } from '../service/constants';
-import { FETCH_TRACKS_SUCCESS, FETCH_TRACKS_FAILURE, FETCH_TRACKS, FETCH_TRACKS_PENDING, ADD_TRACK, FETCH_TRACK, FETCH_TRACK_PENDING, FETCH_COVER_ALBUM_PENDING, FETCH_TRACK_FAILURE, FETCH_TRACK_SUCCESS, FETCH_COVER_ALBUM_SUCCESS, FETCH_COVER_ALBUM_FAILURE, FETCH_LYRICS_TRACK_SUCCESS, FETCH_LYRICS_TRACK_FAILURE, FETCH_LYRICS_TRACK, FETCH_LYRICS_TRACK_PENDING } from './actionTypes';
-import { sortByKey } from '../service/sort';
+import { FETCH_TRACKS_SUCCESS, FETCH_TRACKS_FAILURE, FETCH_TRACKS, FETCH_TRACKS_PENDING, ADD_TRACK, FETCH_TRACK_PENDING, FETCH_TRACK_FAILURE, FETCH_TRACK_SUCCESS, FETCH_COVER_ALBUM_SUCCESS, FETCH_COVER_ALBUM_FAILURE, FETCH_LYRICS_TRACK_SUCCESS, FETCH_LYRICS_TRACK_FAILURE, FETCH_LYRICS_TRACK, FETCH_LYRICS_TRACK_PENDING } from './actionTypes';
+import { sortSearchByKey } from '../service/sort';
 
 const isRequestSucceded = (status) => status >= 200 && status <= 204;
 
@@ -25,7 +25,7 @@ function* makeFetchTracks(action) {
     const response = yield call(getDataAsync, ENDPOINTS.search_track, {q_track: action.payload.name});
     const { data: {message} } = response;
     if (isRequestSucceded(response.status)) {
-      const track_list = message.body && message.body.track_list && sortByKey(message.body.track_list, 'track_rating').reverse();
+      const track_list = message.body && message.body.track_list && sortSearchByKey(message.body.track_list, 'track_rating').reverse();
       yield put({ type: FETCH_TRACKS_SUCCESS, payload: {track_list} });
     } else {
       yield put({ type: FETCH_TRACKS_FAILURE });
@@ -66,10 +66,10 @@ function* makeFetchTrack(action) {
 function* makeFetchLyrics(action) {
   yield put({ type: FETCH_LYRICS_TRACK_PENDING});
   try {
-    const response = yield call(getDataAsync, ENDPOINTS.get_lyrics_track, {track_id: action.payload.track.track_id});
+    const response = yield call(getDataAsync, ENDPOINTS.get_lyrics_track, {track_id: action.payload.track_id});
     const { data: {message} } = response;
     if (isRequestSucceded(response.status)) {
-      yield put({ type: FETCH_LYRICS_TRACK_SUCCESS, payload: {...message.body, track_id:action.payload.track.track_id} });
+      yield put({ type: FETCH_LYRICS_TRACK_SUCCESS, payload: {...message.body, track_id:action.payload.track_id} });
     } else {
       yield put({ type: FETCH_LYRICS_TRACK_FAILURE });
     }

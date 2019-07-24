@@ -1,5 +1,5 @@
-// Filter
-export const SET_FILTER = "SET_FILTER";
+// Sort
+export const SET_SORT = "SET_SORT";
 
 // PlayList
 export const ADD_TRACK = 'ADD_TRACK';

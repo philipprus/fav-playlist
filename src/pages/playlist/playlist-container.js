@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
 import Playlist from "./playlist";
 import { openPage, deleteTrack } from "../../redux/actions";
+import { makeGetFavoriteTracksBySort } from "../../redux/selectors/track-selectors";
 
 const mapStateToProps = (state) => {
     return {
-        favorite_list: state.tracks.favorite_list,
+        favorite_list: makeGetFavoriteTracksBySort(state),
     };
 };
 

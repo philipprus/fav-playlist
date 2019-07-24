@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,7 +11,6 @@ import { MenuItem } from '@material-ui/core';
 
 export default function ModalDeleteTrack(props) {
   const {open, onClose, favorite_list, track_add, addTrack, deleteTrack} = props;
-console.log(track_add);
   const [values, setValues] = React.useState({
     track_id: 0
   });
@@ -39,25 +37,31 @@ console.log(track_add);
     <DialogTitle id="form-dialog-title">Warnings: Many songs</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        Your added very many songs, need delete songs. 
-        If you choose agree, old song delete. 
-        You can choose anofer songs for delete in this select form.
+      <p>
+          You exceeded the limit of songs in a favourites. 
+      </p>
+      <p>
+        If you press "ok" th oldest song will be deleted.
+      </p>
+      <p>
+        You can choose song to be deleted from the following list.
+      </p>
       </DialogContentText>
       <form  autoComplete="off">
-      <FormControl >
-        <Select
-          value={values.track_id}
-          onChange={handleChange}
-          inputProps={{
-            name: 'track_id',
-            id: 'track_id',
-          }}
-        >   
-            <MenuItem value={0}>Oldest song</MenuItem>
-            {favorite_list.map( (track, index) => <MenuItem value={track.track_id} key={`song-for-delete-${index}`}>{track.track_name}</MenuItem>)}
-        </Select>
-      </FormControl>
-    </form>
+            <FormControl >
+                <Select
+                value={values.track_id}
+                onChange={handleChange}
+                inputProps={{
+                    name: 'track_id',
+                    id: 'track_id',
+                }}
+                >   
+                    <MenuItem value={0}>Oldest song</MenuItem>
+                    {favorite_list.map( (track, index) => <MenuItem value={track.track_id} key={`song-for-delete-${index}`}>{track.track_name}</MenuItem>)}
+                </Select>
+            </FormControl>
+        </form>
     </DialogContent>
     <DialogActions>
       <Button onClick={()=>onClose()} color="primary">

@@ -1,4 +1,4 @@
-import { SET_FILTER, FETCH_TRACKS, ADD_TRACK, TOGGLE_PAGE, DELETE_TRACK, FETCH_LYRICS_TRACK, CLEAR_FETCH_TRACKS } from "./actionTypes";
+import { SET_SORT, FETCH_TRACKS, ADD_TRACK, TOGGLE_PAGE, DELETE_TRACK, FETCH_LYRICS_TRACK, CLEAR_FETCH_TRACKS } from "./actionTypes";
 
 
 export const fetchTracks = (name) => ({
@@ -24,9 +24,9 @@ export const openPage = () => ({
   type: TOGGLE_PAGE
 });
 
-export const setFilter = (filter) => ({
-   type: SET_FILTER, 
-   payload: { filter } 
+export const setSort = (sort) => ({
+   type: SET_SORT, 
+   payload: { sort } 
 });
 
 export const getLyrics = (track_id) => ({

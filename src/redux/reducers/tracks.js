@@ -66,11 +66,11 @@ const favorite_list = (state = [], action) => {
                 return track
             })
         case FETCH_LYRICS_TRACK_SUCCESS: 
+            console.log("lirycs");
             return state.map((track) => {
                 if (track.track_id === action.payload.track_id) {
                 return Object.assign({}, track, {
-                    lyrics: action.payload.lyrics,
-                    lyrics: {status: "idle"}
+                    lyrics: {...action.payload.lyrics, status: "idle"},
                 })
                 }
                 return track

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import filter from "./filters";
+import sort from "./sorts";
 import tracks from "./tracks";
 import { TOGGLE_PAGE } from "../actionTypes";
 
@@ -16,4 +16,4 @@ const openPage = (state = { status: false}, action) => {
     }
 }
 
-export default combineReducers({ tracks, filter, openPage });
+export default combineReducers({ tracks, sort, openPage });
