@@ -5,6 +5,7 @@ import App from "../App";
 import TrackPage from "../pages/track-page/track-page-container";
 import Header from "../components/header/header-container";
 import { Container } from "@material-ui/core";
+import Footer from "../content-layout/footer";
 
 export const Routes = () => {
     return (
@@ -16,6 +17,7 @@ export const Routes = () => {
                     <Route path="/" render={(props) => <App {...props} />} />
                 </Switch>
             </Container>
+            <Footer/>
         </BrowserRouter>
     )
 }

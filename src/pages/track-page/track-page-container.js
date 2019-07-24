@@ -4,7 +4,8 @@ import { openPage, getLyrics } from "../../redux/actions";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        track: state.tracks.favorite_list.find(track => track.track_id === Number(ownProps.match.params.trackID)) ,
+        track: state.tracks.favorite_list.find(track => track.track_id === Number(ownProps.match.params.trackID)),
+        status_lyrics: state.lyrics
     };
 };
 

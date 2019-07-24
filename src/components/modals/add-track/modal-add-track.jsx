@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { TrackNoImage } from '../../track/track-no-image';
 import { isLoading, isIdle } from '../../../service/deep-objects';
-import { MAX_TRACKS } from '../../../service/constants';
+import { MAX_TRACKS, FILTERS } from '../../../service/constants';
 import ModalDeleteTrack from '../delete-track/modal-delete-track-container';
 
 function getModalStyle() {
@@ -22,17 +22,40 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
   paper: {
     position: 'absolute',
-    width: 600,
     minHeight: 369,
     borderRadius: 5,
+    [theme.breakpoints.down('sm')]: {
+      width: '70%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '50%'
+    },
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
     outline: 'none',
   },
   textField : {
-    width: "100%"
-  }
+    width: "100%",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+    },
+    '>label': {
+      fontSize: 10
+    }
+  },
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 20px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
 }));
 
 export default function ModalAddTrack(props) {
@@ -70,10 +93,11 @@ export default function ModalAddTrack(props) {
   };
 
   const hadlerAddTrack = track => {
-    const { addTrack, songsCount, clearFetchTracks } = props;
+    const { addTrack, songsCount, clearFetchTracks, setSort } = props;
     if(songsCount >= MAX_TRACKS){
       hadleDeleteModalOpen();
     } else {
+      setSort(FILTERS.BY_DEFAULT)
       addTrack && addTrack(track);
       clearFetchTracks && clearFetchTracks();
     }
@@ -89,7 +113,7 @@ export default function ModalAddTrack(props) {
     if(isIdle(search_tracks) && search_tracks && search_tracks.track_list  && search_tracks.track_list.length > 0) {
         const { track_list } = search_tracks;
         const track = track_list[0].track;
-        return  <TrackNoImage track={track} text_button={"❤ Add Song"} addTrack={() => hadlerAddTrack(track)} />
+        return  <TrackNoImage track={track} text_button={"😎 Add Song"} addTrack={() => hadlerAddTrack(track)} />
     } 
     if(isIdle(search_tracks) && search_tracks && search_tracks.track_list  && search_tracks.track_list.length === 0) {
       return <>Not found</>;
@@ -99,7 +123,7 @@ export default function ModalAddTrack(props) {
 
   return (
     <div>
-      <Button type="button"  color="inherit" onClick={handleOpen}>
+      <Button type="button" classes={{root: classes.root, label: classes.label}} onClick={handleOpen}>
         {textButton}
       </Button>
       <Modal
@@ -109,14 +133,14 @@ export default function ModalAddTrack(props) {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h2>Add songs</h2>
+          <h2>Add Song 😍</h2>
           <p>
             Please, write name song.
           </p>
           <form noValidate autoComplete="off">
             <TextField
               id="standard-name"
-              label="Write by track name or by artist name"
+              label="Write track name"
               className={classes.textField}
               value={values.name}
               onChange={handleChange('name')}

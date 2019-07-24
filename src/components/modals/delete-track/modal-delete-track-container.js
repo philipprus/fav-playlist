@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ModalDeleteTrack from "./modal-delete-track";
-import { deleteTrack, addTrack } from "../../../redux/actions";
+import { deleteTrack, addTrack, setSort } from "../../../redux/actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteTrack: (track_id) => dispatch(deleteTrack(track_id)),
-        addTrack:  (track) => dispatch(addTrack(track))
+        addTrack:  (track) => dispatch(addTrack(track)),
+        setSort: (sort_name) => dispatch(setSort(sort_name))
     };
 };
 

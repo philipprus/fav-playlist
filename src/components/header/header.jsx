@@ -20,20 +20,36 @@ const useStyles = makeStyles( (theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  formSort: {
+    color: '#ffffff',
+    marginRight: 20
+  },
+  buttonAdd: {
+    color: '#fff', border: '1px solid #fff', marginRight: 10
+  },
+  countSongs: {
+    marginRight: 20
+  },
+  selectRoot: {
+    color: '#fff'
+  },
+  selectIcon: {
+    color: "#fff"
+  },
+  selectUnderline: {
+    borderBottom: "2px solid #ff747e"
+  },
+  selectUnderline: {
+    borderBottom: "2px solid #ff747e"
+  }
 }));
 
 function Header(props) {
   const classes = useStyles();
   const { favorite_list_count, statusOpenPage, setSort, sort } = props;
- 
-  const [values, setValues] = React.useState({
-    sort: sort
-  });
+
   function handleChange(event) {
-    setValues(oldValues => ({
-      ...oldValues,
-      [event.target.name]: event.target.value,
-    }));
+  
     setSort && setSort(event.target.value)
   }
   
@@ -44,15 +60,12 @@ function Header(props) {
   }
 
   const formSort = () => {
-    return  <form className={classes.root} autoComplete="off">
+    return  <form className={classes.formSort} autoComplete="off">
                 <FormControl className={classes.formControl}>
                     <Select
-                    value={values.sort}
-                    onChange={handleChange}
-                    inputProps={{
-                        name: 'sort',
-                        id: 'sort',
-                    }}
+                      classes={{root: classes.selectRoot, icon: classes.selectIcon, underline: classes.selectUnderline}}
+                      value={sort}
+                      onChange={handleChange}
                     >
                     <MenuItem value={FILTERS.BY_DEFAULT}>By date added</MenuItem>
                     <MenuItem value={FILTERS.BY_ALBUM}>By album</MenuItem>
@@ -67,16 +80,16 @@ function Header(props) {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
-            <Typography className={classes.title} variant="h6" noWrap>
-            Favorite PlayList Songs
-            </Typography>
-            {statusOpenPage && statusOpenPage.status && <Button onClick={()=> handlerClosePage()}>Back</Button>}
+        <Toolbar className={classes.toolbar}>
+              <Typography className={classes.title} variant="h6" noWrap>
+                💖 Favorite PlayList Songs
+              </Typography>
+            {statusOpenPage && statusOpenPage.status && <Button className={classes.buttonAdd} onClick={()=> handlerClosePage()}>👌 Back</Button>}
             {statusOpenPage && !statusOpenPage.status && formSort()}
-            <Typography>
+            <Typography className={classes.countSongs}>
               Songs: {favorite_list_count}/{MAX_TRACKS}
             </Typography>
-            <ModalAddTrack textButton="Add"/>
+            <ModalAddTrack textButton="Add 😍"/>
         </Toolbar>
         
       </AppBar>

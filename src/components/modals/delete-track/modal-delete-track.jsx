@@ -8,9 +8,18 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
+import { FILTERS } from '../../../service/constants';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  select: {
+    width: '100%'
+  }
+}));
 
 export default function ModalDeleteTrack(props) {
-  const {open, onClose, favorite_list, track_add, addTrack, deleteTrack} = props;
+  const classes = useStyles();
+  const {open, onClose, favorite_list, track_add, addTrack, deleteTrack, setSort} = props;
   const [values, setValues] = React.useState({
     track_id: 0
   });
@@ -28,13 +37,14 @@ export default function ModalDeleteTrack(props) {
     } else {
         deleteTrack && deleteTrack(favorite_list[favorite_list.length-1].track_id);
     }
+    setSort(FILTERS.BY_DEFAULT)
     addTrack && addTrack(track_add.track);
     onClose && onClose();
   }
 
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-    <DialogTitle id="form-dialog-title">Warnings: Many songs</DialogTitle>
+    <DialogTitle id="form-dialog-title">Warnings: Exceeded the limit </DialogTitle>
     <DialogContent>
       <DialogContentText>
       <p>
@@ -48,8 +58,9 @@ export default function ModalDeleteTrack(props) {
       </p>
       </DialogContentText>
       <form  autoComplete="off">
-            <FormControl >
-                <Select
+            <FormControl className={classes.select}>
+                <Select 
+                
                 value={values.track_id}
                 onChange={handleChange}
                 inputProps={{

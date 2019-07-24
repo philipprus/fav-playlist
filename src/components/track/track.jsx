@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -30,7 +30,10 @@ const useStyles = makeStyles({
     closeButton: {
       position: 'absolute',
       right: '-15px',
-      background: '#3f51b5',
+      backgroundColor: fade('#3f51b5', 1),
+      '&:hover': {
+        backgroundColor: fade('#000', 0.25),
+      },
       boxShadow: '0px 0px 6px #000',
       padding: '2px',
       top: '-15px',
@@ -57,7 +60,6 @@ export function Track(props) {
               <Typography  color="textSecondary" component="p" className={classes.subTitle}>
                   Artist: {cropLongString(artist_name, 20)}  <br/>
                   Album: {cropLongString(album_name,20)} <br/>
-                  Date: {added_date}
               </Typography>
             </CardContent>
           </CardActionArea>
