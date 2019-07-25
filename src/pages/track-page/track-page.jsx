@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, Typography } from "@material-ui/core";
 import Thumbnails from "../../components/thumbnails";
 import { isLoading } from "../../service/deep-objects";
 import { withStyles } from "@material-ui/core/styles";
@@ -48,11 +48,13 @@ class TrackPage extends React.Component {
         }
         if(lyrics) {
             return (
-                <div>
-                    <div dangerouslySetInnerHTML={{__html: lyrics && lyrics.lyrics_body}}/>
+                <>
+                    <div style={{ whiteSpace: 'pre-wrap', lineHeight: 1.7}}>
+                        {lyrics && lyrics.lyrics_body}
+                    </div>
                     <h5>Copyright</h5>
                     <p>{lyrics && lyrics.lyrics_copyright}</p>
-                </div>);
+                </>);
         }
     }
 
