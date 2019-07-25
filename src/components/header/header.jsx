@@ -1,12 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { FormControl, Select, MenuItem, Button } from '@material-ui/core';
-import ModalAddTrack from '../modals/add-track/modal-add-track-container';
-import { MAX_TRACKS, FILTERS } from '../../service/constants';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { FormControl, Select, MenuItem, Button } from "@material-ui/core";
+import ModalAddTrack from "../modals/add-track/modal-add-track";
+import { MAX_TRACKS, FILTERS } from "../../service/constants";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { setSort, openPage } from "../../redux/actions";
+
 
 const useStyles = makeStyles( (theme) => ({
   header: {
@@ -21,17 +24,17 @@ const useStyles = makeStyles( (theme) => ({
     minWidth: 120,
   },
   formSort: {
-    color: '#ffffff',
+    color: "#ffffff",
     marginRight: 20
   },
   buttonAdd: {
-    color: '#fff', border: '1px solid #fff', marginRight: 10
+    color: "#fff", border: "1px solid #fff", marginRight: 10
   },
   countSongs: {
     marginRight: 20
   },
   selectRoot: {
-    color: '#fff'
+    color: "#fff"
   },
   selectIcon: {
     color: "#fff"
@@ -73,6 +76,8 @@ function Header(props) {
             </form>
   }
 
+  const forOpenPage = statusOpenPage && statusOpenPage.status;
+
   return (
     <header className={classes.header}>
       <AppBar position="static">
@@ -80,12 +85,12 @@ function Header(props) {
               <Typography className={classes.title} variant="h6" noWrap>
               <span role="img" aria-label="heart">💖</span> Favorite PlayList Songs
               </Typography>
-            {statusOpenPage && statusOpenPage.status && <Button className={classes.buttonAdd} onClick={()=> handlerClosePage()}><span role="img" aria-label="ok">👌</span> Back</Button>}
-            {statusOpenPage && !statusOpenPage.status && formSort()}
+            {!forOpenPage && formSort()}
             <Typography className={classes.countSongs}>
               Songs: {favorite_list_count}/{MAX_TRACKS}
             </Typography>
-            <ModalAddTrack textButton="Add song"/>
+            {!forOpenPage && <ModalAddTrack textButton="Add song"/>}
+            {forOpenPage && <Button className={classes.buttonAdd} onClick={()=> handlerClosePage()}><span role="img" aria-label="ok">👌</span> Back</Button>}
         </Toolbar>
         
       </AppBar>
@@ -93,4 +98,20 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+const mapStateToProps = (state) => {
+  return {
+      favorite_list_count: state.tracks.favorite_list ? state.tracks.favorite_list.length : 0,
+      statusOpenPage: state.openPage,
+      sort: state.sort
+
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openPage: () => dispatch(openPage()),
+    setSort: (sort) => dispatch(setSort(sort))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

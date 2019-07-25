@@ -1,12 +1,14 @@
-import React from 'react';
-import Playlist from './pages/playlist/playlist-container';
+import React from "react";
+import { Routes } from "./routes/Routes";
+import { Provider } from "react-redux";
+import initStore from "./redux/store";
 
 function App() {
-  return (
-    <React.Fragment>
-        <Playlist/>
-    </React.Fragment>
-  );
+  return  (
+    <Provider store={initStore()}>
+      <Routes />
+    </Provider>
+    );
 }
 
 export default App;

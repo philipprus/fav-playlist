@@ -2,20 +2,22 @@ import * as React from "react";
 import { Grid, Button } from "@material-ui/core";
 import Thumbnails from "../../components/thumbnails";
 import { isLoading } from "../../service/deep-objects";
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { openPage, getLyrics } from "../../redux/actions";
 
 
 const useStyles = () => ({
 
     backButton: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
         borderRadius: 3,
         border: 0,
-        color: 'white',
+        color: "white",
         height: 48,
-        padding: '0 20px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        padding: "0 20px",
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     },
     pageStyle: {
         marginBottom: "100px"
@@ -24,19 +26,19 @@ const useStyles = () => ({
 
 class TrackPage extends React.Component {
 
-    handlerClosePage() {
+    handlerClosePage = () => {
         const { openPage } = this.props;
         openPage && openPage();
         this.props.history.push("/");
     }
 
-    getLirycs() {
+    getLirycs = () => {
         const { has_lyrics, track_id, lyrics } = this.props.track;
         const { getLyrics } = this.props;
         has_lyrics && !lyrics && getLyrics(track_id);
     }
 
-    renderLyrics() {
+    renderLyrics = () => {
         const { lyrics, status_lyrics  } = this.props.track;
         if (!lyrics) {
             return <p>No lyrics</p>
@@ -53,8 +55,6 @@ class TrackPage extends React.Component {
                 </div>);
         }
     }
-
-
 
     render(){
         const { classes } = this.props;
@@ -95,4 +95,19 @@ class TrackPage extends React.Component {
     }
 };
 
-export default withRouter(withStyles(useStyles)(TrackPage));
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        track: state.tracks.favorite_list.find(track => track.track_id === Number(ownProps.match.params.trackID)),
+        status_lyrics: state.lyrics
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openPage: ()=> dispatch(openPage()),
+        getLyrics: (track_id) => dispatch(getLyrics(track_id))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(useStyles)(TrackPage)));

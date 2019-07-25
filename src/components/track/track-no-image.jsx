@@ -1,22 +1,18 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
-import { cropLongString } from '../../service/common';
-
-const useStyles = makeStyles({
-  });
+import React from "react";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import { Button } from "@material-ui/core";
+import { cropLongString } from "../../service/common";
+import PropTypes from "prop-types";
 
 export function TrackNoImage(props) {
     const { album_name, artist_name, track_name } = props.track;
     const { addTrack, text_button } = props;
-    const classes = useStyles();
     return (
-        <Card className={classes.card}>
+        <Card>
           <CardActionArea onClick={()=>addTrack(props.track)}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
@@ -34,4 +30,9 @@ export function TrackNoImage(props) {
           </CardActions>
         </Card>
       );
+}
+
+TrackNoImage.propTypes = {
+  track: PropTypes.object.isRequired,
+  addTrack: PropTypes.func.isRequired
 }

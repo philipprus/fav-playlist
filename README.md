@@ -1,3 +1,64 @@
+## Folder Structure
+
+After creation, your project should look like this:
+
+```
+my-app/
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    assets/
+        images/
+    components
+        header/
+            header.jsx
+        modals/
+            add-track/
+                modal-add.track.jsx
+            delete-track/
+                modal-delete-track.jsx
+        track/
+            track-no-image.jsx
+            track.jsx
+        notFoundPage.jsx
+        thumbnails.jsx
+    content-layout/
+        footer.jsx
+    pages/
+        playlist/
+            playlist.jsx
+        track-page/
+            track-page.jsx
+    redux/
+        redusers/
+        selectors/
+        action.js
+        actionTypes.js
+        sagas.js
+        store.js
+    routes/
+        Routes.jsx
+    service/
+        common.js
+        constant.js
+        deep-objects.js
+        history.js
+        sort.js
+    App.js
+    index.css
+    index.js
+```
+
+## Note
+
+If you use http://localhost:3000. 
+Use chrome extension: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi or another.
+Because server MusicMatch doesn't work without https.
+
 ## Available Scripts
 
 In the project directory, you can run:

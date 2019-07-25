@@ -4,7 +4,7 @@ export const cropLongString = (str, countLetter) => {
 
 
 export const getRandomColor = () => {
-    return '#' +  Math.random().toString(16).substr(-6);
+    return "#" +  Math.random().toString(16).substr(-6);
   }
 
   export const getRandomEmoji = () => {

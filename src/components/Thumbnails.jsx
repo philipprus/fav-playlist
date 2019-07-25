@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { CardMedia } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react"
+import PropTypes from "prop-types"
+import { CardMedia } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
     media: {
@@ -9,9 +9,9 @@ const useStyles = makeStyles({
     }, 
     noMedia: {
       height: 150,
-      justifyContent: 'center',
-      display: 'flex',
-      alignItems: 'center',
+      justifyContent: "center",
+      display: "flex",
+      alignItems: "center",
       fontSize: 40
     }
   });

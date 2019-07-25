@@ -9,14 +9,13 @@ export const getSearchTracks = (state) => state.tracks && state.tracks.search_tr
 export const makeGetFavoriteTracksBySort = createSelector(
     [getFavoriteTracks, getSort],
     (tracks, sort) => {
-        
         switch (sort) {
             case FILTERS.BY_ALBUM:
-                return sortTracksByKey(tracks, 'album_name');
+                return sortTracksByKey(tracks, "album_name");
             case FILTERS.BY_ARTIST:
-                return sortTracksByKey(tracks, 'artist_name');
+                return sortTracksByKey(tracks, "artist_name");
             case FILTERS.BY_TRACK:
-                    return sortTracksByKey(tracks, 'track_name');
+                    return sortTracksByKey(tracks, "track_name");
             case FILTERS.BY_DEFAULT:
                 return tracks;
             default:

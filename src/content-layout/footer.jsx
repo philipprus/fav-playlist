@@ -1,7 +1,7 @@
-import React from 'react';
-import { Container } from '@material-ui/core';
+import React from "react";
+import { Container } from "@material-ui/core";
 import musicMatch from "../assets/images/logo-musicmatch.svg"
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles( (theme) => ({
     footer: {
